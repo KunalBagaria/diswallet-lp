@@ -1,10 +1,11 @@
 .firstSectionCircle {
   position: absolute;
-  width: 1549px;
-  height: 1283px;
-  left: -800px;
-  top: -577px;
-  background: linear-gradient(90deg, rgb(42, 54, 96, 0.85), rgb(42, 54, 96, 0.35));
-  filter: blur(500px);
-  border-radius: 30%;
+  width: 1200px;
+  min-height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background-image: url(../images/circles/SectionOne.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }

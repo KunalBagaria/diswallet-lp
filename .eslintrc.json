@@ -3,7 +3,15 @@
     "react/function-component-definition": [2, { "namedComponents": "function-expression" }],
     "react/jsx-props-no-spreading": 0,
     "import/prefer-default-export": 0,
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "react/destructuring-assignment": 0,
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "hrefLeft", "hrefRight" ],
+      "aspects": [ "invalidHref", "preferButton" ]
+    }],
+    "@next/next/no-img-element": 0,
+    "react/require-default-props": 0
   },
   "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript"],
   "plugins": ["import", "prettier"],

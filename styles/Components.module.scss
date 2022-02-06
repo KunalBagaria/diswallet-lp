@@ -1,0 +1,36 @@
+.defaultLink {
+    color: var(--blue-text-color);
+    font-family: var(--fancy-font-family);
+    font-style: normal;
+    font-weight: var(--text-medium);
+    font-size: var(--main-text-size);
+    &:hover {
+        color: var(--main-text-color);
+    }
+}
+
+.discordBtn {
+    width: 19.6rem;
+    height: 4.60rem;
+    background: var(--discord-btn-color);
+    border-radius: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fancy-font-family);
+    font-weight: var(--text-semi-bold);
+    color: var(--main-text-color);
+    font-size: var(--small-text-size);
+    transition: all 0.18s linear;
+    &:hover {
+        transform: scale(0.97);
+    }
+    & img {
+        margin-left: 1rem;
+    }
+}
+
+.body {
+    max-width: var(--main-max-width);
+    width: 100%;
+}

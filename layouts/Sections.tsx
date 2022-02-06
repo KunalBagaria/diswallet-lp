@@ -1,10 +1,16 @@
 import React from 'react';
-import { FirstSectionCircle } from './Components';
+import {
+  FirstSectionCircle,
+  Body,
+} from './Components';
 
 export const FirstSection = function FirstSection() {
   return (
-    <div>
+    <>
       <FirstSectionCircle />
-    </div>
+      <Body>
+        <span />
+      </Body>
+    </>
   );
 };
