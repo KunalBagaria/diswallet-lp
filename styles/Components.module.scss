@@ -1,36 +1,74 @@
 .defaultLink {
-    color: var(--blue-text-color);
-    font-family: var(--fancy-font-family);
-    font-style: normal;
-    font-weight: var(--text-medium);
-    font-size: var(--main-text-size);
-    &:hover {
-        color: var(--main-text-color);
-    }
+  color: var(--blue-text-color);
+  font-family: var(--fancy-font-family);
+  font-style: normal;
+  font-weight: var(--text-medium);
+  font-size: var(--main-text-size);
+
+  &:hover {
+    color: var(--main-text-color);
+  }
 }
 
 .discordBtn {
-    width: 19.6rem;
-    height: 4.60rem;
-    background: var(--discord-btn-color);
-    border-radius: 10rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--fancy-font-family);
-    font-weight: var(--text-semi-bold);
-    color: var(--main-text-color);
-    font-size: var(--small-text-size);
-    transition: all 0.18s linear;
-    &:hover {
-        transform: scale(0.97);
-    }
-    & img {
-        margin-left: 1rem;
-    }
+  width: 19.6rem;
+  height: 4.60rem;
+  background: var(--discord-btn-color);
+  border-radius: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fancy-font-family);
+  font-weight: var(--text-semi-bold);
+  color: var(--main-text-color);
+  font-size: var(--small-text-size);
+  transition: all 0.18s linear;
+
+  &:hover {
+    transform: scale(0.97);
+  }
+
+  & img {
+    margin-left: 1rem;
+  }
 }
 
 .body {
-    max-width: var(--main-max-width);
-    width: 100%;
+  max-width: var(--main-max-width);
+  width: 100%;
+}
+
+.smallHeading {
+  font-family: var(--fancy-font-family);
+  font-weight: var(--text-bold);
+  font-size: var(--small-heading-size);
+  color: var(--main-text-color);
+  text-align: center;
+}
+
+.gradientHeading {
+  text-align: center;
+  font-family: var(--fancy-font-family);
+  font-weight: var(--text-bold);
+  font-size: var(--main-heading-size);
+  background: var(--text-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bigHeading {
+  font-family: var(--fancy-font-family);
+  font-weight: var(--text-bold);
+  font-size: var(--main-heading-size);
+  color: var(--main-text-color);
+  text-align: center;
+}
+
+.bigSubHeading {
+  font-family: var(--main-font-family);
+  font-size: var(--sub-heading-size);
+  color: var(--blue-text-color);
+  text-align: center;
+  max-width: 80rem;
 }

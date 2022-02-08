@@ -24,7 +24,7 @@ export const DefaultLink = function DefaultLink(props: DefaultLinkProps) {
 };
 
 export const AddToDiscord = function AddToDiscord({ overrideHeight }: {
-  overrideHeight?: number
+  overrideHeight?: string
 }) {
   return (
     <a className={styles.discordBtn} style={{ height: overrideHeight }} rel="noopener noreferrer" target="_blank" href={process.env.NEXT_PUBLIC_DISCORD_INVITE}>
