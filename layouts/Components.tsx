@@ -23,11 +23,12 @@ export const DefaultLink = function DefaultLink(props: DefaultLinkProps) {
   );
 };
 
-export const AddToDiscord = function AddToDiscord({ overrideHeight }: {
-  overrideHeight?: string
+export const AddToDiscord = function AddToDiscord({ overrideHeight, overrideWidth }: {
+  overrideHeight?: string,
+  overrideWidth?: string
 }) {
   return (
-    <a className={styles.discordBtn} style={{ height: overrideHeight }} rel="noopener noreferrer" target="_blank" href={process.env.NEXT_PUBLIC_DISCORD_INVITE}>
+    <a className={styles.discordBtn} style={{ height: overrideHeight, width: overrideWidth }} rel="noopener noreferrer" target="_blank" href={process.env.NEXT_PUBLIC_DISCORD_INVITE}>
       <span>Add to Discord</span>
       <img src={discordIcon.src} alt="Add to Discord" />
     </a>
@@ -37,6 +38,14 @@ export const AddToDiscord = function AddToDiscord({ overrideHeight }: {
 export const Body = function Body({ children }: any) {
   return (
     <div className={styles.body}>
+      {children}
+    </div>
+  );
+};
+
+export const HorizontalSpaceBetween = function HorizontalSpaceBetween({ children }: any) {
+  return (
+    <div className={styles.spaceBetweenHorizontal}>
       {children}
     </div>
   );

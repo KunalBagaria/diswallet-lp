@@ -10,6 +10,18 @@
   }
 }
 
+.centerFlexHorizontal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spaceBetweenHorizontal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .discordBtn {
   width: 19.6rem;
   height: 4.60rem;
@@ -67,7 +79,17 @@
 
 .bigSubHeading {
   font-family: var(--main-font-family);
+  font-weight: var(--text-regular);
   font-size: var(--sub-heading-size);
+  color: var(--blue-text-color);
+  text-align: center;
+  max-width: 80rem;
+}
+
+.smallSubHeading {
+  font-family: var(--main-font-family);
+  font-weight: var(--text-regular);
+  font-size: var(--main-text-size);
   color: var(--blue-text-color);
   text-align: center;
   max-width: 80rem;

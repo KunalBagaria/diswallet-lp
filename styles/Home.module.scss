@@ -5,9 +5,11 @@
   left: 0;
   top: 0;
   z-index: -1;
-  background-image: url(../images/circles/SectionOne.svg);
+  background-image: url(../images/blur-effects/SectionOne.png);
   background-repeat: no-repeat;
   background-size: cover;
+  -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
 .firstSectionContainer {
@@ -16,4 +18,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.secondSectionContainer {
+  max-width: var(--wide-max-width);
+  width: 100%;
+  margin-top: 19.5rem;
+  & .secondSectionText {
+    max-width: 52rem;
+    & > * {
+      text-align: left;
+    }
+  }
 }
