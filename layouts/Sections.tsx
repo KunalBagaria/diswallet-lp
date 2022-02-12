@@ -25,6 +25,7 @@ export const FirstSection = function FirstSection() {
           <AddToDiscord overrideHeight="5.8rem" overrideWidth="21.8rem" />
         </div>
       </Body>
+      <script async src="https://tally.so/widgets/embed.js" />
     </>
   );
 };

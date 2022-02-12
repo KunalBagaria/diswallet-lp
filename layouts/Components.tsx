@@ -23,15 +23,57 @@ export const DefaultLink = function DefaultLink(props: DefaultLinkProps) {
   );
 };
 
+declare global {
+  interface Window {
+    Tally: any;
+  }
+}
+
+type PopupOptions = {
+  layout?: 'default' | 'modal';
+  width?: number;
+  alignLeft?: boolean;
+  hideTitle?: boolean;
+  overlay?: boolean;
+  emoji?: {
+    text: string;
+    animation: 'none' | 'wave' | 'tada' | 'heart-beat' | 'spin' | 'flash' | 'bounce' | 'rubber-band' | 'head-shake';
+  };
+};
+
+const Options: PopupOptions = {
+  layout: 'modal',
+  width: 800,
+  overlay: true,
+  emoji: {
+    text: '👋',
+    animation: 'rubber-band',
+  },
+};
+
 export const AddToDiscord = function AddToDiscord({ overrideHeight, overrideWidth }: {
   overrideHeight?: string,
   overrideWidth?: string
 }) {
   return (
-    <a className={styles.discordBtn} style={{ height: overrideHeight, width: overrideWidth }} rel="noopener noreferrer" target="_blank" href={process.env.NEXT_PUBLIC_DISCORD_INVITE}>
-      <span>Add to Discord</span>
-      <img src={discordIcon.src} alt="Add to Discord" />
-    </a>
+    <div>
+      {typeof window !== 'undefined' && (
+        <div
+          className={styles.discordBtn}
+          style={{
+            height: overrideHeight, width: overrideWidth,
+          }}
+          // rel="noopener noreferrer"
+          // target="_blank"
+          // href={process.env.NEXT_PUBLIC_DISCORD_INVITE ?
+          // process.env.NEXT_PUBLIC_DISCORD_INVITE : ''}
+          onClick={window.Tally && !process.env.NEXT_PUBLIC_DISCORD_INVITE ? window.Tally.openPopup('mKNYzn', Options) : () => {}}
+        >
+          <span>{process.env.NEXT_PUBLIC_DISCORD_INVITE ? 'Add to Discord' : 'Join Waitlist'}</span>
+          <img src={discordIcon.src} alt="Add to Discord" />
+        </div>
+      )}
+    </div>
   );
 };
 
