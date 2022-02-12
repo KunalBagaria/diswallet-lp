@@ -5,6 +5,7 @@ import { Navbar } from '@/layouts/Navbar';
 import {
   FirstSection,
   SecondSection,
+  ThirdSection,
 } from '@/layouts/Sections';
 
 const Home: NextPage = function HomePage() {
@@ -14,6 +15,7 @@ const Home: NextPage = function HomePage() {
       <Navbar />
       <FirstSection />
       <SecondSection />
+      <ThirdSection />
     </>
   );
 };

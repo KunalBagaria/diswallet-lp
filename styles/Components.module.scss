@@ -20,6 +20,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media only screen and (max-width: 940px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .discordBtn {
@@ -35,11 +39,9 @@
   color: var(--main-text-color);
   font-size: var(--small-text-size);
   transition: all 0.18s linear;
-
   &:hover {
     transform: scale(0.97);
   }
-
   & img {
     margin-left: 1rem;
   }
@@ -55,11 +57,11 @@
   font-weight: var(--text-bold);
   font-size: var(--small-heading-size);
   color: var(--main-text-color);
-  text-align: center;
+
 }
 
 .gradientHeading {
-  text-align: center;
+
   font-family: var(--fancy-font-family);
   font-weight: var(--text-bold);
   font-size: var(--main-heading-size);
@@ -74,7 +76,7 @@
   font-weight: var(--text-bold);
   font-size: var(--main-heading-size);
   color: var(--main-text-color);
-  text-align: center;
+
 }
 
 .bigSubHeading {
@@ -82,7 +84,7 @@
   font-weight: var(--text-regular);
   font-size: var(--sub-heading-size);
   color: var(--blue-text-color);
-  text-align: center;
+
   max-width: 80rem;
 }
 
@@ -91,6 +93,32 @@
   font-weight: var(--text-regular);
   font-size: var(--main-text-size);
   color: var(--blue-text-color);
-  text-align: center;
   max-width: 80rem;
+}
+
+.featuresGrid {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(56rem, 1fr));
+  grid-row-gap: 6rem;
+  margin-top: 6.2rem;
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-row-gap: 2rem;
+  }
+}
+
+.feature {
+  padding: 4.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  max-width: 56rem;
+  width: 100%;
+  height: 31.4rem;
 }

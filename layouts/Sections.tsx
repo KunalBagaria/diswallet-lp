@@ -3,11 +3,14 @@ import styles from '@/styles/Home.module.scss';
 import components from '@/styles/Components.module.scss';
 import Image from 'next/image';
 import discordSS from '@/images/screenshots/discord.png';
+import ThirdSectionBlur from '@/images/blur-effects/SectionThree.png';
 import {
   FirstSectionCircle,
   Body,
   AddToDiscord,
   HorizontalSpaceBetween,
+  FeaturesGrid,
+  Feature,
 } from './Components';
 
 export const FirstSection = function FirstSection() {
@@ -25,7 +28,6 @@ export const FirstSection = function FirstSection() {
           <AddToDiscord overrideHeight="5.8rem" overrideWidth="21.8rem" />
         </div>
       </Body>
-      <script async src="https://tally.so/widgets/embed.js" />
     </>
   );
 };
@@ -49,6 +51,40 @@ export const SecondSection = function SecondSection() {
           </p>
         </div>
       </HorizontalSpaceBetween>
+    </div>
+  );
+};
+
+const Features = [
+  {}, {}, {}, {},
+];
+
+export const ThirdSection = function ThirdSection() {
+  return (
+    <div className={styles.thirdSectionContainer}>
+      <img alt="" src={ThirdSectionBlur.src} className={styles.thirdSectionBlur} />
+      <h1
+        className={components.smallHeading}
+        style={{
+          marginTop: '17rem',
+          marginBottom: '0rem',
+        }}
+      >
+        Discord 🤝 Crypto Wallet is the best partnership ever
+      </h1>
+      <p
+        className={components.bigSubHeading}
+        style={{
+          marginTop: '2.4rem',
+        }}
+      >
+        A short sub-heading of max 50 character goes in here
+      </p>
+      <FeaturesGrid>
+        {Features.map((feature, index) => (
+          <Feature key={index} />
+        ))}
+      </FeaturesGrid>
     </div>
   );
 };
