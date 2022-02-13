@@ -77,11 +77,3 @@ export const FeaturesGrid = function FeaturesGrid({ children }: any) {
     </div>
   );
 };
-
-export const Feature = function Feature({ children }: any) {
-  return (
-    <div className={styles.feature}>
-      {children}
-    </div>
-  );
-};

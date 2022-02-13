@@ -3,13 +3,16 @@ import styles from '@/styles/Home.module.scss';
 import components from '@/styles/Components.module.scss';
 import discordSS from '@/images/screenshots/discord.png';
 import ThirdSectionBlur from '@/images/blur-effects/SectionThree.png';
+import documentationIcon from '@/images/icons/documentation.svg';
+import solanaIcon from '@/images/icons/solana.svg';
+import ncIcon from '@/images/icons/non-custodial.svg';
+import setupIcon from '@/images/icons/setup.svg';
 import {
   FirstSectionCircle,
   Body,
   AddToDiscord,
   HorizontalSpaceBetween,
   FeaturesGrid,
-  Feature,
 } from './Components';
 
 export const FirstSection = function FirstSection() {
@@ -61,8 +64,29 @@ export const SecondSection = function SecondSection() {
 const Features = [
   {
     title: 'Documentation Ready',
-    description: 'We have a full documentation for all the features of DisWallet. You can read it here.',
-  }, {}, {}, {},
+    description: `
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut augue sagittis magna ipsum semper tortor, gravida diam pulvinar. Et ac neque, porttitor tempor ipsum ultrices diam turpis.
+    `,
+    icon: documentationIcon,
+  }, {
+    title: 'Easy Setup',
+    description: `
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut augue sagittis magna ipsum semper tortor, gravida diam pulvinar. Et ac neque, porttitor tempor ipsum ultrices diam turpis.
+    `,
+    icon: setupIcon,
+  }, {
+    title: 'Non-Custodial',
+    description: `
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut augue sagittis magna ipsum semper tortor, gravida diam pulvinar. Et ac neque, porttitor tempor ipsum ultrices diam turpis.
+    `,
+    icon: ncIcon,
+  }, {
+    title: 'Powered by Solana',
+    description: `
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut augue sagittis magna ipsum semper tortor, gravida diam pulvinar. Et ac neque, porttitor tempor ipsum ultrices diam turpis.
+    `,
+    icon: solanaIcon,
+  },
 ];
 
 export const ThirdSection = function ThirdSection() {
@@ -88,7 +112,15 @@ export const ThirdSection = function ThirdSection() {
       </p>
       <FeaturesGrid>
         {Features.map((feature, index) => (
-          <Feature key={index} />
+          <div key={index} className={components.feature}>
+            <img alt="" src={feature.icon.src} />
+            <p style={{ marginTop: '2.2rem' }} className={components.bigBoldText}>
+              {feature.title}
+            </p>
+            <p style={{ marginTop: '2.2rem' }} className={components.smallSubHeading}>
+              {feature.description}
+            </p>
+          </div>
         ))}
       </FeaturesGrid>
     </section>
