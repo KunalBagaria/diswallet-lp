@@ -91,3 +91,13 @@ export const ThirdSection = function ThirdSection() {
     </div>
   );
 };
+
+export const Footer = function Footer() {
+  return (
+    <div className={styles.footerContainer}>
+      <div className={styles.footerGrid}>
+        <p className="">asd</p>
+      </div>
+    </div>
+  );
+};

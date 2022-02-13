@@ -6,6 +6,7 @@ import {
   FirstSection,
   SecondSection,
   ThirdSection,
+  Footer,
 } from '@/layouts/Sections';
 
 const Home: NextPage = function HomePage() {
@@ -16,6 +17,7 @@ const Home: NextPage = function HomePage() {
       <FirstSection />
       <SecondSection />
       <ThirdSection />
+      <Footer />
     </>
   );
 };
