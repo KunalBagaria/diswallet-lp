@@ -6,17 +6,21 @@ import {
   FirstSection,
   SecondSection,
   ThirdSection,
-  Footer,
 } from '@/layouts/Sections';
+import { Footer } from '@/layouts/Footer';
 
 const Home: NextPage = function HomePage() {
   return (
     <>
       <DefaultHead />
-      <Navbar />
-      <FirstSection />
+      <div className="main-padding">
+        <Navbar />
+        <FirstSection />
+      </div>
       <SecondSection />
-      <ThirdSection />
+      <div className="main-padding">
+        <ThirdSection />
+      </div>
       <Footer />
     </>
   );

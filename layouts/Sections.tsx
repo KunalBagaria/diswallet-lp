@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from '@/styles/Home.module.scss';
 import components from '@/styles/Components.module.scss';
-import Image from 'next/image';
 import discordSS from '@/images/screenshots/discord.png';
 import ThirdSectionBlur from '@/images/blur-effects/SectionThree.png';
 import {
@@ -25,7 +24,11 @@ export const FirstSection = function FirstSection() {
             {`DisWallet makes it easier to do secured transactions
             with your fellow Discord Members in just a few simple commands.`}
           </p>
-          <AddToDiscord overrideHeight="5.8rem" overrideWidth="21.8rem" />
+          <AddToDiscord
+            overrideHeight="5.8rem"
+            overrideWidth="21.8rem"
+            overrideBackground="linear-gradient(267.87deg, #0038FF -15.4%, #DE15D6 79.13%, #FBD7F9 109.93%)"
+          />
         </div>
       </Body>
     </>
@@ -37,14 +40,14 @@ export const SecondSection = function SecondSection() {
     <div className={styles.secondSectionContainer}>
       <HorizontalSpaceBetween>
         <div>
-          <Image src={discordSS} alt="" />
+          <img style={{ width: '120rem' }} src={discordSS.src} alt="" />
         </div>
         <div className={styles.secondSectionText}>
           <h1 className={components.smallHeading}>
             {`We are bringing the next phase of
             Community transactions in motion`}
           </h1>
-          <p className={components.smallSubHeading}>
+          <p className={components.smallSubHeading} style={{ marginTop: '2.3rem' }}>
             {`Some subtext about how this is beneficial for DAOs
             and other web communities. Can also mention how this can be
             used in personal and professional use.`}
@@ -64,7 +67,7 @@ const Features = [
 
 export const ThirdSection = function ThirdSection() {
   return (
-    <div className={styles.thirdSectionContainer}>
+    <section id="features" className={styles.thirdSectionContainer}>
       <img alt="" src={ThirdSectionBlur.src} className={styles.thirdSectionBlur} />
       <h1
         className={components.smallHeading}
@@ -88,16 +91,6 @@ export const ThirdSection = function ThirdSection() {
           <Feature key={index} />
         ))}
       </FeaturesGrid>
-    </div>
-  );
-};
-
-export const Footer = function Footer() {
-  return (
-    <div className={styles.footerContainer}>
-      <div className={styles.footerGrid}>
-        <p className="">asd</p>
-      </div>
-    </div>
+    </section>
   );
 };

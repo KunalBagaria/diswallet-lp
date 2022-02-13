@@ -4,7 +4,6 @@
   font-style: normal;
   font-weight: var(--text-medium);
   font-size: var(--main-text-size);
-
   &:hover {
     color: var(--main-text-color);
   }
@@ -121,4 +120,18 @@
   max-width: 56rem;
   width: 100%;
   height: 31.4rem;
+}
+
+.lightText {
+  font-family: var(--main-font-family);
+  font-weight: normal;
+  font-size: var(--small-text-size);
+  color: var(--light-text-color);
+}
+
+.mainBoldText {
+  font-family: var(--main-font-family);
+  font-weight: var(--text-bold);
+  font-size: var(--main-text-size);
+  color: var(--main-text-color);
 }
