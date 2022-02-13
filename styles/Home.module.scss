@@ -38,6 +38,12 @@
   }
 }
 
+.bigSubHeadingAlign {
+  @media only screen and (min-width: 940px) {
+    text-align: center;
+  }
+}
+
 .thirdSectionContainer {
   margin-top: 12rem;
   max-width: var(--main-max-width);

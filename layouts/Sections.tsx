@@ -21,7 +21,7 @@ export const FirstSection = function FirstSection() {
         <div className={styles.firstSectionContainer}>
           <h1 style={{ margin: '0rem' }} className={components.smallHeading}>Get your Discord Server powered with a</h1>
           <h1 style={{ marginTop: '1rem', marginBottom: '0rem' }} className={components.gradientHeading}>Secured Crypto Wallet</h1>
-          <p style={{ marginTop: '3rem', marginBottom: '5rem' }} className={components.bigSubHeading}>
+          <p style={{ marginTop: '3rem', marginBottom: '5rem' }} className={`${components.bigSubHeading} ${styles.bigSubHeadingAlign}`}>
             {`DisWallet makes it easier to do secured transactions
             with your fellow Discord Members in just a few simple commands.`}
           </p>
@@ -56,7 +56,10 @@ export const SecondSection = function SecondSection() {
 };
 
 const Features = [
-  {}, {}, {}, {},
+  {
+    title: 'Documentation Ready',
+    description: 'We have a full documentation for all the features of DisWallet. You can read it here.',
+  }, {}, {}, {},
 ];
 
 export const ThirdSection = function ThirdSection() {
