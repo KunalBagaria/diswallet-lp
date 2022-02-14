@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import Img from 'next/image';
+import partyEmoji from '@/images/party-emoji.png';
+import downloadIcon from '@/images/download-icon.svg';
 
+// step 1
 export const PasswordSection = function PasswordSectionComponent() {
   const validationSchema = Yup.object().shape({
     password: Yup.string()
@@ -14,23 +18,33 @@ export const PasswordSection = function PasswordSectionComponent() {
       .oneOf([Yup.ref('password')], 'Passwords must match'),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
+  const [submit, setSubmit] = useState(false);
 
   const {
-    register, handleSubmit, formState: { errors },
+    register, handleSubmit, watch, formState: { errors },
   } = useForm(formOptions);
+  const password = watch('password');
 
-  const onSubmit = (data: any) => console.log(JSON.stringify(data));
+  useEffect(() => {
+    if (password) {
+      setSubmit(true);
+    }
+  }, [password]);
+
+  const onSubmit = (data: any) => {
+    console.log(JSON.stringify(data));
+  };
 
   return (
     <div className="pl-10 mt-14 mb-16 w-full">
-      <div className="text-4xl text-white font-bold">
+      <div className="text-5xl text-white font-bold">
         Setup a Wallet Password
       </div>
       {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <motion.input
           type="password"
-          className={`mt-14 mr-14 p-10 text-2xl h-20  bg-input-dark rounded-xl text-input-dark-text ${errors?.password ? 'border border-input-error' : ''}`}
+          className={`mt-14 mr-14 p-10 text-2xl h-24 bg-input-dark rounded-xl text-input-dark-text ${errors?.password ? 'border border-input-error' : ''}`}
           placeholder="Enter Password"
           {...register(
             'password',
@@ -42,7 +56,7 @@ export const PasswordSection = function PasswordSectionComponent() {
 
         <motion.input
           type="password"
-          className={`mt-8 mr-14 p-10 text-2xl h-20 bg-input-dark rounded-xl text-input-dark-text ${errors?.confirmPassword ? 'border border-input-error' : ''}`}
+          className={`mt-8 mr-14 p-10 text-2xl h-24 bg-input-dark rounded-xl text-input-dark-text ${errors?.confirmPassword ? 'border border-input-error' : ''}`}
           placeholder="Confirm Password"
           {...register(
             'confirmPassword',
@@ -52,12 +66,13 @@ export const PasswordSection = function PasswordSectionComponent() {
         />
         {errors.confirmPassword && <p className="mt-4 text-2xl text-input-error">{errors.confirmPassword?.message}</p> }
 
-        <button className={`mt-24 mr-14 text-2xl h-20 rounded-xl text-white ${errors.confirmPassword || errors.password ? 'bg-button-disabled' : 'bg-button'}`} type="submit"> Continue </button>
+        <button className={`mt-12 mr-14 text-2xl h-24 rounded-xl text-white ${errors.confirmPassword || errors.password || !submit ? 'bg-button-disabled' : 'bg-button'}`} type="submit"> Continue </button>
       </form>
     </div>
   );
 };
 
+// step 2
 export const SeedPhraseSection = function SeedPhraseSectionComponent() {
   const [isChecked, setChecked] = useState(true);
 
@@ -83,8 +98,8 @@ export const SeedPhraseSection = function SeedPhraseSectionComponent() {
       </div>
 
       <div className="flex flex-col justify-between">
-        {qnas.map((e) => (
-          <div className="mt-4">
+        {qnas.map((e, i) => (
+          <div className="mt-4" key={i}>
             <div className="text-2xl text-white mt-6">
               {e.ques}
             </div>
@@ -110,20 +125,144 @@ export const SeedPhraseSection = function SeedPhraseSectionComponent() {
   );
 };
 
+// step 3
+export const GetSeedPhrase = function GetSeedPhaseComponent() {
+  const [seedVisible, setSeedVisible] = useState(false);
+
+  const toggleSeedVisible = () => {
+    setSeedVisible(!seedVisible);
+  };
+
+  return (
+    <div>
+      <div className="flex flex-col pl-10 mt-14 mb-16 mr-10 w-full">
+        <div className="text-6xl text-white font-bold">
+          Get your Secret Seed Phrase
+        </div>
+        <div className="mt-10 mr-10 text-3xl md:text-2xl text-bluish-dark font-light">
+          This Seed Phrase will be your master access to your wallet funds.
+        </div>
+        <div className="mt-10 mr-10 text-3xl md:text-2xl text-bluish-dark font-light">
+          <div className="flex flex-row mb-10 mr-10">
+            <div> 1. </div>
+            <div className="ml-12 text-white">
+              You shall never disclose your secret recovery phrase. You
+              could lose your funds if you lose this key.
+            </div>
+          </div>
+          <div className="flex flex-col mb-20 mr-14">
+            <div> 2. </div>
+
+            <div
+              className={`bg-white ml-12 text-2xl md:text-3xl text-black font-mono font-bold p-6 md:p-20 ${seedVisible ? 'blur-sm' : 'blur-none'}`}
+              onClick={toggleSeedVisible}
+            >
+              You shall never disclose your secret recovery
+              You shall never disclose your secret recovery
+            </div>
+
+            {!seedVisible && (
+              <div
+                className={`bg-seed-active-green ml-12 text-2xl md:text-2xl text-white p-6 md:p-10 ${seedVisible ? '' : ''}`}
+              >
+                Write down this secret phase in this same sequence, memorize it or save it
+                on a password manager like 1Password, LastPass or Bitwarden.
+                You can also download this phrase as a text file
+                and save it in an encrypted storage for maximum security.
+
+                <div className="flex flex-row mt-10">
+                  <a className="font-bold underline">
+                    Download and Save Secret Phrase
+                  </a>
+                  <div>
+                    <Img src={downloadIcon} className="ml-14" />
+                  </div>
+                </div>
+              </div>
+            )}
+
+          </div>
+
+        </div>
+        <button className=" mr-12 text-2xl h-20 rounded-xl text-white bg-button" type="submit"> Continue </button>
+
+      </div>
+    </div>
+  );
+};
+
+// step 4
+export const Verification = function VerificationComponent() {
+  const [words, setWords] = useState(['johhny', 'yes', 'papa', 'eating', 'sugar', 'no', 'telling', 'lies']);
+  const [activeWords, setActiveWords] = useState(['johhny', 'papa', 'sugar', 'no', 'lies']);
+
+  return (
+    <div>
+      <div className="flex flex-col pl-10 mt-14 mb-16 mr-10 w-full">
+        <div className="text-6xl text-white font-bold">
+          Verification
+        </div>
+        <div className="mt-10 mr-10 text-3xl md:text-2xl text-bluish-dark font-light">
+          Select the words which were there in your seed phrase (in any sequence)
+        </div>
+        <div>
+          <div className="grid gap-6 md:gap-4 grid-cols-2 md:grid-cols-4 mt-10 -mb-24 md:mb-0 grid-rows-6 md:grid-rows-2 mr-10 text-white font-light">
+            {words.map((e, i) => (
+              <motion.div
+                key={i}
+                className={`flex text-2xl pt-2 justify-center items-center h-16 rounded-lg font-bold font-mono ${activeWords.includes(e) ? 'bg-button' : 'bg-grid-inactive border-2 border-button hover:bg-button'}`}
+                whileHover={{ scale: 1.025 }}
+              >
+                {e}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <button className={`mt-2 md:mt-10 text-2xl h-20 mr-12 rounded-xl text-white font-semibold ${true ? 'bg-button' : 'bg-button-disabled'}`} type="submit"> Continue </button>
+      </div>
+    </div>
+  );
+};
+
+// step 5
+export const Congratulation = function CongratulationComponent() {
+  return (
+    <div>
+      <div className="flex flex-col pl-10 mt-14 mb-16 w-full">
+        <div className="text-5xl text-white font-bold">
+          Congratulations
+        </div>
+        <div className="flex items-center justify-center mt-12">
+          <Img className="partyEmoji" height={120} width={120} src={partyEmoji} alt="party emoji" placeholder="blur" />
+        </div>
+        <div className="flex items-center text-center justify-center mt-10 text-4xl text-white font-light">
+          You have successfully setup DisWallet
+        </div>
+        <div className="flex items-center text-center justify-center mt-10 text-2xl text-bluish-dark font-light">
+          You can now go back to Discord and continue using DisWallet
+        </div>
+        <button className={`mt-10 text-2xl h-24 mr-12 rounded-xl text-white font-semibold ${true ? 'bg-button' : 'bg-button-disabled'}`} type="submit"> Continue </button>
+      </div>
+    </div>
+  );
+};
+
 export const SetupLayout = function SeedPhraseInfoComponent() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(3);
 
   const totalSteps = 5;
 
   return (
-    <div className="container mx-auto place-content-center flex justify-center mt-36 border-4 border-indigo-600">
-      <div className=" flex flex-col m-20 w-2/6 border-4 border-indigo-600 bg-card-background-dark rounded-md">
+    <div className="container mx-auto place-content-center flex justify-center mt-24">
+      <div className="flex flex-col md:m-14 w-11/12 sm:w-5/12 md:2/12 bg-card-background-dark rounded-md">
         <div className="ml-10 mr-10 mt-10">
           <div className="w-full bg-progress-empty rounded-md">
             <div className=" bg-progress-green h-3 rounded-md" style={{ width: `${(currentStep / totalSteps) * 100}%` }} />
           </div>
         </div>
+        {currentStep !== 5 && (
         <div className="ml-10 mr-10 mt-8 text-2xl text-bluish-dark">
           Step
           {' '}
@@ -131,9 +270,13 @@ export const SetupLayout = function SeedPhraseInfoComponent() {
           /
           {totalSteps}
         </div>
+        )}
 
         {currentStep === 1 && <PasswordSection />}
         {currentStep === 2 && <SeedPhraseSection />}
+        {currentStep === 3 && <GetSeedPhrase />}
+        {currentStep === 4 && <Verification />}
+        {currentStep === 5 && <Congratulation />}
       </div>
 
     </div>
