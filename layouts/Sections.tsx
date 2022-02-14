@@ -55,8 +55,7 @@ export const SecondSection = function SecondSection() {
           <p className={components.smallSubHeading} style={{ marginTop: '2.3rem' }}>
             {`
               Use DisWallet to pay for anything!
-              Whether it's rent, tip or a lost bet.
-              All SPL tokens are supported out of the box.
+              Whether it's rent money, a tip to someone you wanna thank or a lost bet.
             `}
           </p>
         </div>
@@ -69,7 +68,7 @@ const Features = [
   {
     title: 'Documentation Ready',
     description: `
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut augue sagittis magna ipsum semper tortor, gravida diam pulvinar. Et ac neque, porttitor tempor ipsum ultrices diam turpis.
+      All commands and features of DisWallet are documented in an easy to read notion document.
     `,
     icon: documentationIcon,
   }, {
@@ -132,9 +131,9 @@ export const ThirdSection = function ThirdSection() {
 };
 
 const SecurityPoints = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'Security audited by multiple independent third parties.',
+  'New custodial wallets are encrypted client side before it\'s stored.',
+  'Still anxious? Don\'t fret, use the non-custodial wallet feature.',
 ];
 
 export const SecurtiySection = function SecurtiySection() {
@@ -157,7 +156,7 @@ export const SecurtiySection = function SecurtiySection() {
             style={{ marginTop: '1.6rem' }}
           >
             {`
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut augue sagittis magna ipsum semper tortor, gravida diam pulvinar.
+              We use industry standard encryption methods to ensure that your crypto is always safe and secure.
             `}
           </p>
           <div

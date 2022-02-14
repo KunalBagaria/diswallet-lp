@@ -21,11 +21,11 @@ const Links: LinkTypes = {
     Developer: 'https://twitter.com/kb24x7',
   },
   Resources: {
-    Documentation: '/documentation',
+    Documentation: 'https://kunalbagaria.notion.site/DisWallet-Feature-Documentation-8e15d3b517574b6681f5dc7728aeddf6',
     'Join Waitlist': '/waitlist',
   },
   'Connect with us': {
-    Discord: 'https://discord.gg/4YWcXmn7Zu',
+    Discord: 'https://discord.gg/uCAqt9MRG5',
     Twitter: 'https://twitter.com/DisWalletBot',
   },
 };
@@ -48,8 +48,8 @@ export const Footer = function Footer({ fixed }: {
             className={components.lightText}
             style={{ maxWidth: '48rem', marginTop: '4rem' }}
           >
-            {`DisWallet makes it easier to do secured transactions
-            with your fellow Discord Members in just a few simple commands.`}
+            {`DisWallet makes it easier to do fast and secured transactions
+            with your community members in just a few simple commands.`}
           </p>
         </VerticalSpaceBetween>
         {Object.keys(Links).map((key, index) => (

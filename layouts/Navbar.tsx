@@ -16,7 +16,7 @@ const Links: LinkInterface = {
   Overview: '/',
   Security: '/#security',
   Features: '/#features',
-  Discord: 'https://discord.gg/4YWcXmn7Zu',
+  Discord: 'https://discord.gg/uCAqt9MRG5',
 };
 
 export const Navbar = function Navbar() {
