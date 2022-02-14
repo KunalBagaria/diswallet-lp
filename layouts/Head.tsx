@@ -13,13 +13,13 @@ export const DefaultHead = function DefaultHead() {
       <meta property="og:url" content="https://diswallet.app/" />
       <meta property="og:title" content="DisWallet" />
       <meta property="og:description" content="The Solana Wallet that works inside Discord" />
-      <meta property="og:image" content="https://i0.wp.com/ipfs.io/ipfs/bafybeib3h6577jm42o7qklmcf2qawkjqlo4cjybir5yj7gev56rpgo2qyy" />
+      <meta property="og:image" content="https://i.imgur.com/KmArkjU.gif" />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://diswallet.app/" />
       <meta property="twitter:title" content="DisWallet" />
       <meta property="twitter:description" content="The Solana Wallet that works inside Discord" />
-      <meta property="twitter:image" content="https://i0.wp.com/ipfs.io/ipfs/bafybeib3h6577jm42o7qklmcf2qawkjqlo4cjybir5yj7gev56rpgo2qyy" />
+      <meta property="twitter:image" content="https://i.imgur.com/KmArkjU.gif" />
     </Head>
   );
 };
