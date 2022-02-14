@@ -83,8 +83,8 @@ export const SeedPhraseSection = function SeedPhraseSectionComponent() {
       </div>
 
       <div className="flex flex-col justify-between">
-        {qnas.map((e) => (
-          <div className="mt-4">
+        {qnas.map((e, i) => (
+          <div className="mt-4" key={i}>
             <div className="text-2xl text-white mt-6">
               {e.ques}
             </div>
