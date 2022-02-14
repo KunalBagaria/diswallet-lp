@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import homeStyles from '@/styles/Home.module.scss';
 import styles from '@/styles/Components.module.scss';
-import discordIcon from '@/images/icons/social/Discord.svg';
+// import discordIcon from '@/images/icons/social/Discord.svg';
 
 export const FirstSectionCircle = function Circle() {
   return <div className={homeStyles.firstSectionCircle} />;
@@ -23,20 +23,25 @@ export const DefaultLink = function DefaultLink(props: DefaultLinkProps) {
   );
 };
 
-export const AddToDiscord = function AddToDiscord({ overrideHeight, overrideWidth }: {
+export const AddToDiscord = function AddToDiscord({
+  overrideHeight,
+  overrideWidth,
+  overrideBackground,
+}: {
   overrideHeight?: string,
-  overrideWidth?: string
+  overrideWidth?: string,
+  overrideBackground?: string
 }) {
   return (
     <a
       className={styles.discordBtn}
       style={{
-        height: overrideHeight, width: overrideWidth,
+        height: overrideHeight, width: overrideWidth, background: overrideBackground,
       }}
       href={process.env.NEXT_PUBLIC_DISCORD_INVITE ? process.env.NEXT_PUBLIC_DISCORD_INVITE : '/waitlist'}
     >
       <span>{process.env.NEXT_PUBLIC_DISCORD_INVITE ? 'Add to Discord' : 'Join Waitlist'}</span>
-      <img src={discordIcon.src} alt="Add to Discord" />
+      {/* <img src={discordIcon.src} alt="Add to Discord" /> */}
     </a>
   );
 };
@@ -57,17 +62,17 @@ export const HorizontalSpaceBetween = function HorizontalSpaceBetween({ children
   );
 };
 
-export const FeaturesGrid = function FeaturesGrid({ children }: any) {
+export const VerticalSpaceBetween = function VerticalSpaceBetween({ children }: any) {
   return (
-    <div className={styles.featuresGrid}>
+    <div className={styles.spaceBetweenVertical}>
       {children}
     </div>
   );
 };
 
-export const Feature = function Feature({ children }: any) {
+export const FeaturesGrid = function FeaturesGrid({ children }: any) {
   return (
-    <div className={styles.feature}>
+    <div className={styles.featuresGrid}>
       {children}
     </div>
   );

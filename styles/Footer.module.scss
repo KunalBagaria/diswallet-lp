@@ -1,0 +1,20 @@
+.footerContainer {
+  background: var(--footer-bg);
+  width: 100%;
+  min-height: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rem;
+}
+
+.footerFlex {
+  max-width: var(--wide-max-width);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10rem;
+  @media only screen and (max-width: 940px) {
+    flex-direction: column;
+  }
+}

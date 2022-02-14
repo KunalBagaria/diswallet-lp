@@ -12,6 +12,7 @@
   --blue-text-color: hsl(227, 79%, 81%);
   --main-text-color: hsl(0, 0%, 100%);
   --text-gradient: linear-gradient(271.21deg, #9997FF -14.13%, #FFB4FC 118.09%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+  --light-text-color: hsl(0, 0%, 89%);
   // Font variations
   --fancy-font-family: 'Manrope', sans-serif;
   --main-font-family: 'Inter', sans-serif;
@@ -29,11 +30,12 @@
   // Others
   --main-max-width: 1300px;
   --wide-max-width: 1400px;
-  --discord-btn-color: hsl(227, 58%, 65%);
+  --discord-btn-color: linear-gradient(0deg, hsl(226, 39%, 27%), hsl(226, 39%, 27%)), hsl(227, 58%, 65%);
 }
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
   @media only screen and (max-width: 768px) {
     font-size: 50%;
   }
@@ -58,6 +60,11 @@ a {
 }
 
 #__next {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-padding {
   display: flex;
   flex-direction: column;
   align-items: center;
