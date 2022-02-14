@@ -14,8 +14,8 @@ interface LinkInterface {
 
 const Links: LinkInterface = {
   Overview: '/',
-  Security: '/security',
-  Pricing: '/pricing',
+  Security: '/#security',
+  Features: '/#features',
   Discord: 'https://discord.gg/4YWcXmn7Zu',
 };
 

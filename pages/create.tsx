@@ -4,18 +4,20 @@ import { DefaultHead } from '@/layouts/Head';
 import { Navbar } from '@/layouts/Navbar';
 import {
   Footer,
-} from '@/layouts/Sections';
+} from '@/layouts/Footer';
 import { SetupLayout } from '../layouts/Setup';
 
-const Home: NextPage = function HomePage() {
+const CreateWallet: NextPage = function CreateWallet() {
   return (
     <>
       <DefaultHead />
-      <Navbar />
-      <SetupLayout />
+      <div className="main-padding">
+        <Navbar />
+        <SetupLayout />
+      </div>
       <Footer />
     </>
   );
 };
 
-export default Home;
+export default CreateWallet;
