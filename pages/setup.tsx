@@ -7,15 +7,18 @@ import {
 } from '@/layouts/Footer';
 import { SetupLayout } from '../layouts/Setup';
 
-const Home: NextPage = function HomePage() {
-  return (
-    <>
-      <DefaultHead />
-      <Navbar />
-      <SetupLayout />
-      <Footer />
-    </>
-  );
-};
 
-export default Home;
+const Setup: NextPage = function SetupPage() {
+  return (
+        <>
+          <DefaultHead />
+          <div className="main-padding">
+            <Navbar />
+            <SetupLayout />
+          </div>
+          <Footer />
+        </>
+      );
+  };
+
+export default Setup;
