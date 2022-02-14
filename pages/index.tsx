@@ -5,6 +5,7 @@ import { Navbar } from '@/layouts/Navbar';
 import {
   FirstSection,
   SecondSection,
+  SecurtiySection,
   ThirdSection,
 } from '@/layouts/Sections';
 import { Footer } from '@/layouts/Footer';
@@ -20,6 +21,7 @@ const Home: NextPage = function HomePage() {
       <SecondSection />
       <div className="main-padding">
         <ThirdSection />
+        <SecurtiySection />
       </div>
       <Footer />
     </>

@@ -60,10 +60,16 @@
 }
 
 .gradientHeading {
-
   font-family: var(--fancy-font-family);
   font-weight: var(--text-bold);
   font-size: var(--main-heading-size);
+  background: var(--text-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradientText {
   background: var(--text-gradient);
   background-clip: text;
   -webkit-background-clip: text;

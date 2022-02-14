@@ -7,6 +7,8 @@ import documentationIcon from '@/images/icons/documentation.svg';
 import solanaIcon from '@/images/icons/solana.svg';
 import ncIcon from '@/images/icons/non-custodial.svg';
 import setupIcon from '@/images/icons/setup.svg';
+import tickIcon from '@/images/icons/green-check.svg';
+import lockerImage from '@/images/locker.png';
 import {
   FirstSectionCircle,
   Body,
@@ -123,6 +125,62 @@ export const ThirdSection = function ThirdSection() {
           </div>
         ))}
       </FeaturesGrid>
+    </section>
+  );
+};
+
+const SecurityPoints = [
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+];
+
+export const SecurtiySection = function SecurtiySection() {
+  return (
+    <section id="security" className={styles.securitySectionContainer}>
+      <HorizontalSpaceBetween>
+        <div
+          style={{ maxWidth: '62rem', padding: '5.5rem 0rem' }}
+        >
+          <h1
+            className={components.smallHeading}
+            style={{ marginBottom: '0rem' }}
+          >
+            DisWallet focuses on
+            <span className={components.gradientText}> Security </span>
+            more than anything else
+          </h1>
+          <p
+            className={components.smallSubHeading}
+            style={{ marginTop: '1.6rem' }}
+          >
+            {`
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut augue sagittis magna ipsum semper tortor, gravida diam pulvinar.
+            `}
+          </p>
+          <div
+            style={{ marginTop: '3.5rem' }}
+          >
+            {SecurityPoints.map((point, index) => (
+              <div
+                key={index}
+                style={{ display: 'flex', alignItems: 'center', marginTop: '2.3rem' }}
+              >
+                <img alt="" src={tickIcon.src} />
+                <p
+                  className={components.smallSubHeading}
+                  style={{ marginLeft: '1.85rem' }}
+                >
+                  {point}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <img style={{ width: '50rem' }} alt="" src={lockerImage.src} />
+        </div>
+      </HorizontalSpaceBetween>
     </section>
   );
 };
