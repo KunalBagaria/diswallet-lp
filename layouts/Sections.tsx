@@ -24,10 +24,10 @@ export const FirstSection = function FirstSection() {
       <Body>
         <div className={styles.firstSectionContainer}>
           <h1 style={{ margin: '0rem' }} className={components.smallHeading}>Get your Discord Server powered with a</h1>
-          <h1 style={{ marginTop: '1rem', marginBottom: '0rem' }} className={components.gradientHeading}>Secured Crypto Wallet</h1>
+          <h1 style={{ marginTop: '1rem', marginBottom: '0rem' }} className={components.gradientHeading}>Secured Solana Wallet</h1>
           <p style={{ marginTop: '3rem', marginBottom: '5rem' }} className={`${components.bigSubHeading} ${styles.bigSubHeadingAlign}`}>
-            {`DisWallet makes it easier to do secured transactions
-            with your fellow Discord Members in just a few simple commands.`}
+            {`DisWallet makes it easier to do fast and secured transactions
+            with your community members in just a few simple commands.`}
           </p>
           <AddToDiscord
             overrideHeight="5.8rem"
@@ -53,9 +53,11 @@ export const SecondSection = function SecondSection() {
             Community transactions in motion`}
           </h1>
           <p className={components.smallSubHeading} style={{ marginTop: '2.3rem' }}>
-            {`Some subtext about how this is beneficial for DAOs
-            and other web communities. Can also mention how this can be
-            used in personal and professional use.`}
+            {`
+              Use DisWallet to pay for anything!
+              Whether it's rent, tip or a lost bet.
+              All SPL tokens are supported out of the box.
+            `}
           </p>
         </div>
       </HorizontalSpaceBetween>
@@ -73,19 +75,19 @@ const Features = [
   }, {
     title: 'Easy Setup',
     description: `
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut augue sagittis magna ipsum semper tortor, gravida diam pulvinar. Et ac neque, porttitor tempor ipsum ultrices diam turpis.
+      You can start using DisWallet in seconds with just a few simple commands.
     `,
     icon: setupIcon,
   }, {
     title: 'Non-Custodial',
     description: `
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut augue sagittis magna ipsum semper tortor, gravida diam pulvinar. Et ac neque, porttitor tempor ipsum ultrices diam turpis.
+      For people who'd like to have more control of their funds, we offer a non-custodial wallet feature that lets users sign transactions using their browser wallets.
     `,
     icon: ncIcon,
   }, {
     title: 'Powered by Solana',
     description: `
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut augue sagittis magna ipsum semper tortor, gravida diam pulvinar. Et ac neque, porttitor tempor ipsum ultrices diam turpis.
+      Powered by the fastest blockchain in the world, DisWallet ensures that you can send money instantly to anyone.
     `,
     icon: solanaIcon,
   },
@@ -110,7 +112,7 @@ export const ThirdSection = function ThirdSection() {
           marginTop: '2.4rem',
         }}
       >
-        A short sub-heading of max 50 character goes in here
+        The fastest way to pay someone in Discord, without leaving Discord.
       </p>
       <FeaturesGrid>
         {Features.map((feature, index) => (
