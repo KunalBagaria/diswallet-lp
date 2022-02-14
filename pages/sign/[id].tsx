@@ -1,4 +1,3 @@
-import type { NextPage } from 'next';
 import React from 'react';
 import { DefaultHead } from '@/layouts/Head';
 import { Navbar } from '@/layouts/Navbar';
@@ -14,7 +13,7 @@ interface Props {
   error?: any
 }
 
-const Sign: NextPage = function SignPage(props: Props) {
+const Sign = function SignPage(props: Props) {
   const router = useRouter();
 
   React.useEffect(() => {
