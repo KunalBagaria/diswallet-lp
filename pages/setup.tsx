@@ -7,18 +7,17 @@ import {
 } from '@/layouts/Footer';
 import { SetupLayout } from '../layouts/Setup';
 
-
 const Setup: NextPage = function SetupPage() {
   return (
-        <>
-          <DefaultHead />
-          <div className="main-padding">
-            <Navbar />
-            <SetupLayout />
-          </div>
-          <Footer />
-        </>
-      );
-  };
+    <>
+      <DefaultHead />
+      <div className="main-padding">
+        <Navbar />
+        <SetupLayout />
+      </div>
+      <Footer />
+    </>
+  );
+};
 
 export default Setup;
