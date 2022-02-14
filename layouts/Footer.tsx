@@ -30,9 +30,17 @@ const Links: LinkTypes = {
   },
 };
 
-export const Footer = function Footer() {
+export const Footer = function Footer({ fixed }: {
+  fixed?: boolean
+}) {
   return (
-    <div className={styles.footerContainer}>
+    <div
+      className={styles.footerContainer}
+      style={{
+        position: fixed ? 'absolute' : 'relative',
+        bottom: fixed ? 0 : '',
+      }}
+    >
       <div className={styles.footerFlex}>
         <VerticalSpaceBetween>
           <img alt="Logo" src={logo.src} />

@@ -25,6 +25,13 @@
   }
 }
 
+.fullWidthSpaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .discordBtn {
   width: 19.6rem;
   height: 4.60rem;
@@ -143,9 +150,78 @@
   color: var(--main-text-color);
 }
 
+.fancyGrayText {
+  color: var(--gray-text-color);
+  font-family: var(--main-font-family);
+  font-style: normal;
+  font-weight: var(--text-medium);
+  font-size: var(--small-text-size);
+}
+
+.fancySemiBold {
+  font-family: var(--fancy-font-family);
+  font-weight: var(--text-semi-bold);
+  font-size: var(--small-text-size);
+  color: var(--main-text-color);
+}
+
 .bigBoldText {
   font-family: var(--fancy-font-family);
   font-weight: var(--text-semi-bold);
   font-size: var(--sub-heading-size);
   color: var(--main-text-color);
+}
+
+.bigGreenText {
+  font-family: var(--fancy-font-family);
+  font-weight: var(--text-semi-bold);
+  font-size: var(--sub-heading-size);
+  color: var(--main-green-color);
+}
+
+.defaultBlurLeft {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background-image: url(../images/blur-effects/default-blur.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.defaultBlurRight {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  right: 0;
+  top: 0;
+  z-index: -1;
+  background-image: url(../images/blur-effects/default-blur.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.fullWidthBtn {
+  width: 100%;
+  height: 5.6rem;
+  background-color: var(--main-btn-color);
+  color: var(--main-text-color);
+  font-family: var(--fancy-font-family);
+  font-style: normal;
+  font-weight: var(--text-semi-bold);
+  font-size: var(--small-text-size);
+  border-radius: 0.8rem;
+  &:enabled:hover {
+    opacity: 0.85;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--disabled-btn-color);
+  }
 }

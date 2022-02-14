@@ -8,7 +8,9 @@
   // Background colors
   --main-bg-color: hsl(248, 100%, 4%);
   --footer-bg: hsl(0, 0%, 0%);
+  --box-bg: hsl(225, 13%, 19%);
   // Text Colors
+  --gray-text-color: hsl(0, 0%, 67%);
   --blue-text-color: hsl(227, 79%, 81%);
   --main-text-color: hsl(0, 0%, 100%);
   --text-gradient: linear-gradient(271.21deg, #9997FF -14.13%, #FFB4FC 118.09%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
@@ -31,6 +33,9 @@
   --main-max-width: 1300px;
   --wide-max-width: 1400px;
   --discord-btn-color: linear-gradient(0deg, hsl(226, 39%, 27%), hsl(226, 39%, 27%)), hsl(227, 58%, 65%);
+  --main-btn-color: hsl(227, 58%, 65%);
+  --disabled-btn-color: hsl(0, 0%, 50%, 1);
+  --main-green-color: hsl(123, 100%, 74%);
 }
 
 html {
