@@ -15,6 +15,7 @@ module.exports = {
         'bluish-dark': '#c0caed',
         'input-dark': '#1b1b1c',
         'input-dark-text': '#848484',
+        'input-error': '#C15051',
         'button-disabled': '#808080',
         'button': '#7289da',
         'white': '#ffffff',
