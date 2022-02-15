@@ -250,13 +250,16 @@ export const Congratulation = function CongratulationComponent() {
 
 export const SetupLayout = function SeedPhraseInfoComponent() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(2);
 
   const totalSteps = 5;
 
   return (
     <div className="container mx-auto place-content-center flex justify-center mt-24">
-      <div className="flex flex-col md:m-14 w-11/12 sm:w-5/12 md:2/12 bg-card-background-dark rounded-md">
+      <div
+        style={{ maxWidth: '62.5rem', width: '100%' }}
+        className="flex flex-col md:m-14 w-11/12 md:2/12 bg-card-background-dark rounded-md"
+      >
         <div className="ml-10 mr-10 mt-10">
           <div className="w-full bg-progress-empty rounded-md">
             <div className=" bg-progress-green h-3 rounded-md" style={{ width: `${(currentStep / totalSteps) * 100}%` }} />
