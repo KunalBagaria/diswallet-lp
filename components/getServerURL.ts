@@ -1,1 +1,1 @@
-export const getServerURL = () => 'https://diswallet.app';
+export const getServerURL = () => 'http://localhost:9000';

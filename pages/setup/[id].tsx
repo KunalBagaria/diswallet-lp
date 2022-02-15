@@ -1,4 +1,3 @@
-import type { NextPage } from 'next';
 import React from 'react';
 import { DefaultHead } from '@/layouts/Head';
 import { Navbar } from '@/layouts/Navbar';
@@ -7,7 +6,7 @@ import {
 } from '@/layouts/Footer';
 import { SetupLayout } from '../../layouts/Setup';
 
-const Setup: NextPage = function SetupPage() {
+const Setup = function SetupPage() {
   return (
     <>
       <DefaultHead />

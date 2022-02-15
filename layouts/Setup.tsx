@@ -3,6 +3,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import { useRouter } from 'next/router';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import { encrypt } from '@/components/crypto';
 import { shuffleArray } from '@/components/functions';
@@ -16,7 +17,9 @@ import Img from 'next/image';
 import partyEmoji from '@/images/party-emoji.png';
 import downloadIcon from '@/images/download-icon.svg';
 import components from '@/styles/Components.module.scss';
-// import toast from 'react-hot-toast';
+import { getServerURL } from '@/components/getServerURL';
+import { toasterPromise } from '@/components/toasterNetworkPromise';
+import toast from 'react-hot-toast';
 
 // step 1
 export const PasswordSection = function PasswordSectionComponent({
@@ -280,27 +283,55 @@ export const Verification = function VerificationComponent({
   keys,
   password,
   setParentStep,
+  id,
 }: {
   keys: Keys;
   password: string;
   setParentStep: any;
+  id: string | string[] | undefined;
 }) {
   const [words, setWords] = useState<string[]>([]);
   const [activeWords, setActiveWords] = useState<string[]>([]);
   const [disabled, setDisabled] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log(id);
     const eightWords = keys.generatedMnemonic.split(' ').slice(0, 8);
     const shuffledWords = shuffleArray(eightWords);
     setWords(shuffledWords);
-  }, [keys.generatedMnemonic]);
+  }, [keys.generatedMnemonic, id]);
 
   const handleSubmit = async () => {
     if (activeWords.length !== 4) return;
     setDisabled(true);
     const encryptedPrivateKey = await encrypt(Buffer.from(password), Buffer.from(keys.privateKey));
-    console.log(encryptedPrivateKey);
-    setParentStep(5);
+    const data = {
+      publicKey: keys.publicKey,
+      encryptedPrivateKey,
+      _id: id,
+    };
+    try {
+      const request = fetch(`${getServerURL()}/api/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      toast.promise(toasterPromise(request), {
+        loading: 'Saving wallet...',
+        success: 'Successfully saved wallet',
+        error: 'Failed to save wallet',
+      });
+
+      const response = await request;
+      if (response.ok) {
+        setParentStep(5);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -396,6 +427,8 @@ export const SetupLayout = function SeedPhraseInfoComponent() {
   const [password, setPassword] = useState<string>('');
   const [keys, setKeys] = useState<any>();
   const totalSteps = 5;
+  const router = useRouter();
+  const { id } = router.query;
 
   return (
     <div
@@ -448,6 +481,7 @@ export const SetupLayout = function SeedPhraseInfoComponent() {
             keys={keys}
             password={password}
             setParentStep={setCurrentStep}
+            id={id}
           />
         )}
         {currentStep === 5 && (
