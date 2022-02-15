@@ -5,7 +5,7 @@ import { Navbar } from '@/layouts/Navbar';
 import {
   Footer,
 } from '@/layouts/Footer';
-import { SetupLayout } from '../layouts/Setup';
+import { SetupLayout } from '../../layouts/Setup';
 
 const Setup: NextPage = function SetupPage() {
   return (

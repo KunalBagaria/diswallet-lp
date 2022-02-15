@@ -225,3 +225,9 @@
     background: var(--disabled-btn-color);
   }
 }
+
+.fancyFont {
+  & > * {
+    font-family: var(--fancy-font-family);
+  }
+}

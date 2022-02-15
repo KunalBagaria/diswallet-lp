@@ -1,14 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import * as Yup from 'yup';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import { encrypt } from '@/components/crypto';
+import { shuffleArray } from '@/components/functions';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
+import { generateKeyPair } from '@/components/wallet';
+import Confetti from 'react-confetti';
+import stepsIcon from '@/images/icons/steps.svg';
 import Img from 'next/image';
 import partyEmoji from '@/images/party-emoji.png';
 import downloadIcon from '@/images/download-icon.svg';
+import components from '@/styles/Components.module.scss';
+// import toast from 'react-hot-toast';
 
 // step 1
-export const PasswordSection = function PasswordSectionComponent() {
+export const PasswordSection = function PasswordSectionComponent({
+  setPassword,
+  setStep,
+}: any) {
   const validationSchema = Yup.object().shape({
     password: Yup.string()
       .required('Password is required')
@@ -33,6 +47,8 @@ export const PasswordSection = function PasswordSectionComponent() {
 
   const onSubmit = (data: any) => {
     console.log(JSON.stringify(data));
+    setPassword(data.password);
+    setStep(2);
   };
 
   return (
@@ -46,6 +62,7 @@ export const PasswordSection = function PasswordSectionComponent() {
           type="password"
           className={`mt-14 mr-14 p-10 text-2xl h-24 bg-input-dark rounded-xl text-input-dark-text ${errors?.password ? 'border border-input-error' : ''}`}
           placeholder="Enter Password"
+          autoComplete="new-password"
           {...register(
             'password',
             { required: true },
@@ -58,6 +75,7 @@ export const PasswordSection = function PasswordSectionComponent() {
           type="password"
           className={`mt-8 mr-14 p-10 text-2xl h-24 bg-input-dark rounded-xl text-input-dark-text ${errors?.confirmPassword ? 'border border-input-error' : ''}`}
           placeholder="Confirm Password"
+          autoComplete="new-password"
           {...register(
             'confirmPassword',
             { required: true },
@@ -66,14 +84,24 @@ export const PasswordSection = function PasswordSectionComponent() {
         />
         {errors.confirmPassword && <p className="mt-4 text-2xl text-input-error">{errors.confirmPassword?.message}</p> }
 
-        <button className={`mt-12 mr-14 text-2xl h-24 rounded-xl text-white ${errors.confirmPassword || errors.password || !submit ? 'bg-button-disabled' : 'bg-button'}`} type="submit"> Continue </button>
+        <button
+          className={`
+            mt-12 mr-14 text-2xl h-24 rounded-xl text-white ${errors.confirmPassword || errors.password || !submit ? 'bg-button-disabled' : 'bg-button'}
+          `}
+          type={errors.confirmPassword || errors.password || !submit ? 'reset' : 'submit'}
+          style={{ cursor: errors.confirmPassword || errors.password || !submit ? 'not-allowed' : 'pointer' }}
+        >
+          Continue
+        </button>
       </form>
     </div>
   );
 };
 
 // step 2
-export const SeedPhraseSection = function SeedPhraseSectionComponent() {
+export const SeedPhraseSection = function SeedPhraseSectionComponent({
+  setStep,
+}: any) {
   const [isChecked, setChecked] = useState(true);
 
   const qnas = [{
@@ -92,7 +120,7 @@ export const SeedPhraseSection = function SeedPhraseSectionComponent() {
   };
 
   return (
-    <div className="flex flex-col pl-10 pr-12 mt-14 mb-16 w-full border-2 border-red-400">
+    <div className="flex flex-col pl-10 pr-12 mt-14 mb-16 w-full">
       <div className="text-5xl text-white font-bold">
         Setting up your Seed Phrase
       </div>
@@ -120,18 +148,38 @@ export const SeedPhraseSection = function SeedPhraseSectionComponent() {
         <div className="text-white text-2xl ml-8">I have carefully read the above information and understood it completely.</div>
       </div>
 
-      <button className={`mt-12 text-2xl h-20 rounded-xl text-white ${!isChecked ? 'bg-button-disabled' : 'bg-button'}`} type="submit"> Yes, I have understood everything </button>
+      <button
+        className={`mt-12 text-2xl h-20 rounded-xl text-white ${!isChecked ? 'bg-button-disabled' : 'bg-button'}`}
+        type="submit"
+        onClick={() => {
+          if (isChecked) {
+            setStep(3);
+          }
+        }}
+      >
+        Yes, I have understood everything
+      </button>
     </div>
   );
 };
 
 // step 3
-export const GetSeedPhrase = function GetSeedPhaseComponent() {
+export const GetSeedPhrase = function GetSeedPhaseComponent({
+  setStep,
+  setParentKeys,
+}: any) {
   const [seedNotVisible, setSeedVisible] = useState(true);
+  const [keys, setKeys] = useState<any>();
 
   const toggleSeedVisible = () => {
     setSeedVisible(!seedNotVisible);
   };
+
+  useEffect(() => {
+    const gKeys = generateKeyPair();
+    setKeys(gKeys);
+    setParentKeys(gKeys);
+  }, [setParentKeys]);
 
   return (
     <div>
@@ -143,27 +191,36 @@ export const GetSeedPhrase = function GetSeedPhaseComponent() {
           This Seed Phrase will be your master access to your wallet funds.
         </div>
         <div className="mt-10 mr-10 text-3xl md:text-2xl text-bluish-dark font-light">
-          <div className="flex flex-row mb-10 mr-10">
-            <div> 1. </div>
-            <div className="ml-12 text-white">
+          <div
+            className="flex flex-row mb-10 mr-10"
+            style={{ position: 'relative' }}
+          >
+            <img
+              src={stepsIcon.src}
+              alt=""
+              style={{
+                position: 'absolute',
+                left: 0,
+              }}
+            />
+            <div className="ml-24 text-white">
               You shall never disclose your secret recovery phrase. You
               could lose your funds if you lose this key.
             </div>
           </div>
           <div className="flex flex-col mb-20 mr-14">
-            <div> 2. </div>
-
             <div
-              className={`bg-white ml-12 text-2xl md:text-3xl text-black font-mono font-bold p-6 md:p-20 ${seedNotVisible ? 'blur-sm' : 'blur-none'}`}
+              className={`bg-white ml-24 text-2xl md:text-3xl text-black font-mono font-bold p-6 md:p-20 ${seedNotVisible ? 'blur-sm' : 'blur-none'}`}
               onClick={toggleSeedVisible}
+              style={{ borderRadius: '0.9rem' }}
             >
-              You shall never disclose your secret recovery
-              You shall never disclose your secret recovery
+              {keys ? keys.generatedMnemonic : ''}
             </div>
 
             {!seedNotVisible && (
               <div
-                className={`bg-seed-active-green ml-12 text-2xl md:text-2xl text-white p-6 md:p-10 ${seedNotVisible ? '' : ''}`}
+                className={`bg-seed-active-green ml-24 mt-12 text-2xl md:text-2xl text-white p-6 md:p-10 ${seedNotVisible ? '' : ''}`}
+                style={{ border: '1px solid #5CB860', borderRadius: '0.9rem' }}
               >
                 Write down this secret phase in this same sequence, memorize it or save it
                 on a password manager like 1Password, LastPass or Bitwarden.
@@ -174,7 +231,9 @@ export const GetSeedPhrase = function GetSeedPhaseComponent() {
                   <a className="font-bold underline">
                     Download and Save Secret Phrase
                   </a>
-                  <div>
+                  <div
+                    style={{ marginLeft: '0.5rem' }}
+                  >
                     <Img src={downloadIcon} className="ml-14" />
                   </div>
                 </div>
@@ -184,17 +243,52 @@ export const GetSeedPhrase = function GetSeedPhaseComponent() {
           </div>
 
         </div>
-        <button className=" mr-12 text-2xl h-20 rounded-xl text-white bg-button" type="submit"> Continue </button>
+        <button
+          className="mr-12 text-2xl h-20 rounded-xl text-white bg-button"
+          type="submit"
+          onClick={() => setStep(4)}
+        >
+          Continue
+        </button>
 
       </div>
     </div>
   );
 };
 
+interface Keys {
+  publicKey: string;
+  privateKey: string;
+  generatedMnemonic: string;
+}
+
 // step 4
-export const Verification = function VerificationComponent() {
-  const [words, setWords] = useState(['johhny', 'yes', 'papa', 'eating', 'sugar', 'no', 'telling', 'lies']);
-  const [activeWords, setActiveWords] = useState(['johhny', 'papa', 'sugar', 'no', 'lies']);
+export const Verification = function VerificationComponent({
+  keys,
+  password,
+  setParentStep,
+}: {
+  keys: Keys;
+  password: string;
+  setParentStep: any;
+}) {
+  const [words, setWords] = useState<string[]>([]);
+  const [activeWords, setActiveWords] = useState<string[]>([]);
+  const [disabled, setDisabled] = useState<boolean>(false);
+
+  useEffect(() => {
+    const eightWords = keys.generatedMnemonic.split(' ').slice(0, 8);
+    const shuffledWords = shuffleArray(eightWords);
+    setWords(shuffledWords);
+  }, [keys.generatedMnemonic]);
+
+  const handleSubmit = async () => {
+    if (activeWords.length !== 4) return;
+    setDisabled(true);
+    const encryptedPrivateKey = await encrypt(Buffer.from(password), Buffer.from(keys.privateKey));
+    console.log(encryptedPrivateKey);
+    setParentStep(5);
+  };
 
   return (
     <div>
@@ -212,6 +306,13 @@ export const Verification = function VerificationComponent() {
                 key={i}
                 className={`flex text-2xl pt-2 justify-center items-center h-16 rounded-lg font-bold font-mono ${activeWords.includes(e) ? 'bg-button' : 'bg-grid-inactive border-2 border-button hover:bg-button'}`}
                 whileHover={{ scale: 1.025 }}
+                onClick={() => {
+                  if (!activeWords.includes(e) && activeWords.length !== 4) {
+                    setActiveWords([...activeWords, e]);
+                  } else if (activeWords.includes(e)) {
+                    setActiveWords(activeWords.filter((w) => w !== e));
+                  }
+                }}
               >
                 {e}
               </motion.div>
@@ -219,7 +320,14 @@ export const Verification = function VerificationComponent() {
           </div>
         </div>
 
-        <button className={`mt-2 md:mt-10 text-2xl h-20 mr-12 rounded-xl text-white font-semibold ${true ? 'bg-button' : 'bg-button-disabled'}`} type="submit"> Continue </button>
+        <button
+          className={`mt-2 md:mt-10 text-2xl h-20 mr-12 rounded-xl text-white font-semibold ${activeWords.length === 4 || disabled ? 'bg-button' : 'bg-button-disabled'}`}
+          type="submit"
+          style={{ cursor: activeWords.length === 4 || disabled ? 'pointer' : 'not-allowed' }}
+          onClick={handleSubmit}
+        >
+          Continue
+        </button>
       </div>
     </div>
   );
@@ -227,10 +335,24 @@ export const Verification = function VerificationComponent() {
 
 // step 5
 export const Congratulation = function CongratulationComponent() {
+  const { width, height } = useWindowSize();
+  const [wind, setWind] = useState(0.025);
+
+  useEffect(() => {
+    setInterval(() => {
+      setWind(Math.floor(Math.random() * 0.07));
+    }, 2000);
+  }, []);
+
   return (
     <div>
+      <Confetti
+        width={width - 50}
+        height={height - 50}
+        wind={wind}
+      />
       <div className="flex flex-col pl-10 mt-14 mb-16 w-full">
-        <div className="text-5xl text-white font-bold">
+        <div className="text-5xl text-center text-white font-bold">
           Congratulations
         </div>
         <div className="flex items-center justify-center mt-12">
@@ -242,27 +364,43 @@ export const Congratulation = function CongratulationComponent() {
         <div className="flex items-center text-center justify-center mt-10 text-2xl text-bluish-dark font-light">
           You can now go back to Discord and continue using DisWallet
         </div>
-        <button className={`mt-10 text-2xl h-24 mr-12 rounded-xl text-white font-semibold ${true ? 'bg-button' : 'bg-button-disabled'}`} type="submit"> Continue </button>
+        <button
+          className="mt-10 text-2xl h-24 mr-12 rounded-xl text-white font-semibold bg-button"
+          type="submit"
+          onClick={() => {
+            window.open('https://discord.com', '_blank');
+          }}
+        >
+          Continue to Discord
+        </button>
       </div>
     </div>
   );
 };
 
 export const SetupLayout = function SeedPhraseInfoComponent() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [currentStep, setCurrentStep] = useState(2);
-
+  const [currentStep, setCurrentStep] = useState(1);
+  const [password, setPassword] = useState<string>('');
+  const [keys, setKeys] = useState<any>();
   const totalSteps = 5;
 
   return (
-    <div className="container mx-auto place-content-center flex justify-center mt-24">
+    <div
+      className={`container mx-auto place-content-center flex justify-center mt-24 ${components.fancyFont}`}
+    >
       <div
         style={{ maxWidth: '62.5rem', width: '100%' }}
-        className="flex flex-col md:m-14 w-11/12 md:2/12 bg-card-background-dark rounded-md"
+        className="flex flex-col md:m-14 w-11/12 md:2/12 bg-card-background-dark rounded-xl"
       >
         <div className="ml-10 mr-10 mt-10">
           <div className="w-full bg-progress-empty rounded-md">
-            <div className=" bg-progress-green h-3 rounded-md" style={{ width: `${(currentStep / totalSteps) * 100}%` }} />
+            <div
+              className=" bg-progress-green h-3 rounded-md"
+              style={{
+                width: `${(currentStep / totalSteps) * 100}%`,
+                transition: 'width 0.5s ease-in-out',
+              }}
+            />
           </div>
         </div>
         {currentStep !== 5 && (
@@ -275,11 +413,33 @@ export const SetupLayout = function SeedPhraseInfoComponent() {
         </div>
         )}
 
-        {currentStep === 1 && <PasswordSection />}
-        {currentStep === 2 && <SeedPhraseSection />}
-        {currentStep === 3 && <GetSeedPhrase />}
-        {currentStep === 4 && <Verification />}
-        {currentStep === 5 && <Congratulation />}
+        {currentStep === 1 && (
+          <PasswordSection
+            setPassword={setPassword}
+            setStep={setCurrentStep}
+          />
+        )}
+        {currentStep === 2 && (
+          <SeedPhraseSection
+            setStep={setCurrentStep}
+          />
+        )}
+        {currentStep === 3 && (
+          <GetSeedPhrase
+            setStep={setCurrentStep}
+            setParentKeys={setKeys}
+          />
+        )}
+        {currentStep === 4 && (
+          <Verification
+            keys={keys}
+            password={password}
+            setParentStep={setCurrentStep}
+          />
+        )}
+        {currentStep === 5 && (
+          <Congratulation />
+        )}
       </div>
 
     </div>
