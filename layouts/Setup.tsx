@@ -127,10 +127,10 @@ export const SeedPhraseSection = function SeedPhraseSectionComponent() {
 
 // step 3
 export const GetSeedPhrase = function GetSeedPhaseComponent() {
-  const [seedVisible, setSeedVisible] = useState(false);
+  const [seedNotVisible, setSeedVisible] = useState(true);
 
   const toggleSeedVisible = () => {
-    setSeedVisible(!seedVisible);
+    setSeedVisible(!seedNotVisible);
   };
 
   return (
@@ -154,16 +154,16 @@ export const GetSeedPhrase = function GetSeedPhaseComponent() {
             <div> 2. </div>
 
             <div
-              className={`bg-white ml-12 text-2xl md:text-3xl text-black font-mono font-bold p-6 md:p-20 ${seedVisible ? 'blur-sm' : 'blur-none'}`}
+              className={`bg-white ml-12 text-2xl md:text-3xl text-black font-mono font-bold p-6 md:p-20 ${seedNotVisible ? 'blur-sm' : 'blur-none'}`}
               onClick={toggleSeedVisible}
             >
               You shall never disclose your secret recovery
               You shall never disclose your secret recovery
             </div>
 
-            {!seedVisible && (
+            {!seedNotVisible && (
               <div
-                className={`bg-seed-active-green ml-12 text-2xl md:text-2xl text-white p-6 md:p-10 ${seedVisible ? '' : ''}`}
+                className={`bg-seed-active-green ml-12 text-2xl md:text-2xl text-white p-6 md:p-10 ${seedNotVisible ? '' : ''}`}
               >
                 Write down this secret phase in this same sequence, memorize it or save it
                 on a password manager like 1Password, LastPass or Bitwarden.
