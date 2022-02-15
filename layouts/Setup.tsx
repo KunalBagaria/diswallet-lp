@@ -274,7 +274,7 @@ export const GetSeedPhrase = function GetSeedPhaseComponent({
 
 interface Keys {
   publicKey: string;
-  privateKey: string;
+  privateKey: Uint8Array;
   generatedMnemonic: string;
 }
 
@@ -304,7 +304,10 @@ export const Verification = function VerificationComponent({
   const handleSubmit = async () => {
     if (activeWords.length !== 4) return;
     setDisabled(true);
-    const encryptedPrivateKey = await encrypt(Buffer.from(password), Buffer.from(keys.privateKey));
+    const encryptedPrivateKey = await encrypt(
+      Buffer.from(keys.privateKey),
+      Buffer.from(password),
+    );
     const data = {
       publicKey: keys.publicKey,
       encryptedPrivateKey,
