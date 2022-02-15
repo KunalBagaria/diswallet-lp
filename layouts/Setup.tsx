@@ -181,6 +181,15 @@ export const GetSeedPhrase = function GetSeedPhaseComponent({
     setParentKeys(gKeys);
   }, [setParentKeys]);
 
+  const downloadTxtFile = () => {
+    const element = document.createElement('a');
+    const file = new Blob([keys.generatedMnemonic], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = `${keys.publicKey}_PRIVATE_KEY.txt`;
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  };
+
   return (
     <div>
       <div className="flex flex-col pl-10 mt-14 mb-16 mr-10 w-full">
@@ -227,7 +236,11 @@ export const GetSeedPhrase = function GetSeedPhaseComponent({
                 You can also download this phrase as a text file
                 and save it in an encrypted storage for maximum security.
 
-                <div className="flex flex-row mt-10">
+                <div
+                  className="flex flex-row mt-10"
+                  onClick={downloadTxtFile}
+                  style={{ cursor: 'pointer' }}
+                >
                   <a className="font-bold underline">
                     Download and Save Secret Phrase
                   </a>
